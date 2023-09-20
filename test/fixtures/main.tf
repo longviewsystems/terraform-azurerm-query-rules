@@ -40,7 +40,8 @@ resource "azurerm_public_ip" "terratest_appg_public_ip" {
   name                = module.naming.public_ip.name_unique
   resource_group_name = azurerm_resource_group.terratest_rg.name
   location            = var.location
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 # since these variables are re-used - a locals block makes this more maintainable
@@ -61,7 +62,7 @@ resource "azurerm_application_gateway" "terratest_app_gateway" {
   sku {
     name     = "Standard_v2"
     tier     = "Standard_v2"
-    capacity = 1
+    capacity = 2
   }
 
   gateway_ip_configuration {
@@ -143,12 +144,12 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "custom_query_alert" {
   query = templatefile("${path.module}/templates/query.tftpl", {
     app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
   })
-  severity    = 3
-  frequency   = 720
-  time_window = 1440
+  severity    = var.alert_severity
+  frequency   = var.alert_frequency
+  time_window = var.alert_time_window
   trigger {
     operator  = "GreaterThan"
-    threshold = 3
+    threshold = var.trigger_threshold
   }
   tags = var.tags
 }

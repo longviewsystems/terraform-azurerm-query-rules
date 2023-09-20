@@ -27,3 +27,24 @@ variable "scope_app_gateway_id" {
   type        = string
   description = "Resource ID of the Application Gateway"
 }
+
+variable "alert_severity" {
+  type        = number
+  description = "Severity of the alert"
+}
+
+variable "alert_frequency" {
+  type        = number
+  description = "Frequency of the alert"
+}
+
+variable "alert_time_window" {
+  type        = number
+  description = "Time window of the alert"
+}
+
+variable "trigger_threshold" {
+  type        = number
+  description = "Threshold of the alert"
+}
+

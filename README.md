@@ -27,11 +27,15 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_action_group_name"></a> [action\_group\_name](#input\_action\_group\_name) | Name of the action group | `string` | n/a | yes |
+| <a name="input_alert_frequency"></a> [alert\_frequency](#input\_alert\_frequency) | Frequency of the alert | `number` | n/a | yes |
 | <a name="input_alert_resource_group_name"></a> [alert\_resource\_group\_name](#input\_alert\_resource\_group\_name) | Resource Group name for the alert | `string` | n/a | yes |
+| <a name="input_alert_severity"></a> [alert\_severity](#input\_alert\_severity) | Severity of the alert | `number` | n/a | yes |
+| <a name="input_alert_time_window"></a> [alert\_time\_window](#input\_alert\_time\_window) | Time window of the alert | `number` | n/a | yes |
 | <a name="input_email_address"></a> [email\_address](#input\_email\_address) | Action Group recipient email address | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | location | `string` | n/a | yes |
 | <a name="input_scope_app_gateway_id"></a> [scope\_app\_gateway\_id](#input\_scope\_app\_gateway\_id) | Resource ID of the Application Gateway | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags | `map(string)` | n/a | yes |
+| <a name="input_trigger_threshold"></a> [trigger\_threshold](#input\_trigger\_threshold) | Threshold of the alert | `number` | n/a | yes |
 
 ## Outputs
 

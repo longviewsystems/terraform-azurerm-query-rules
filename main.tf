@@ -29,12 +29,12 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "custom_query_alert" {
   query = templatefile("${path.module}/templates/query.tftpl", {
     app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
   })
-  severity    = 3
-  frequency   = 720
-  time_window = 1440
+  severity    = var.alert_severity
+  frequency   = var.alert_frequency
+  time_window = var.alert_time_window
   trigger {
     operator  = "GreaterThan"
-    threshold = 3
+    threshold = var.trigger_threshold
   }
   tags = var.tags
 }
