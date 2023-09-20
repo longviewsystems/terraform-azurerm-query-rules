@@ -108,6 +108,8 @@ resource "azurerm_application_gateway" "terratest_app_gateway" {
     backend_http_settings_name = local.http_setting_name
     priority                   = 10
   }
+
+  depends_on = [azurerm_virtual_network.terratest_vnet, azurerm_subnet.terratest_appg_frontend, azurerm_subnet.terratest_appg_backend]
 }
 
 /***************************************************************/
