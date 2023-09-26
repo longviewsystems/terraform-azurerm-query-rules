@@ -24,8 +24,8 @@ variable "tags" {
 }
 
 variable "scope_app_gateway_id" {
-  type        = string
-  description = "Resource ID of the Application Gateway"
+  type        = list(string)
+  description = "Resource ID of the Application Gateway" // only one resource ID is supported for now
 }
 
 variable "alert_severity" {
@@ -33,14 +33,14 @@ variable "alert_severity" {
   description = "Severity of the alert"
 }
 
-variable "alert_frequency" {
-  type        = number
-  description = "Frequency of the alert"
+variable "evaluation_frequency" {
+  description = "The evaluation frequency for your resource" //chosen period of time in ISO 8601 duration format
+  type        = string
 }
 
-variable "alert_time_window" {
-  type        = number
-  description = "Time window of the alert"
+variable "window_duration" {
+  description = "The window duration for your resource" //chosen period of time in ISO 8601 duration format https://www.digi.com/resources/documentation/digidocs//90001488-13/reference/r_iso_8601_duration_format.htm
+  type        = string
 }
 
 variable "trigger_threshold" {

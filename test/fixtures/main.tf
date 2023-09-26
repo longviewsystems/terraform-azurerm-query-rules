@@ -131,27 +131,38 @@ resource "azurerm_monitor_action_group" "action_group" {
   tags = var.tags
 }
 
-resource "azurerm_monitor_scheduled_query_rules_alert" "custom_query_alert" {
+resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   name                = "app-gateway-firewall-alerts-rule"
-  location            = var.location
   resource_group_name = azurerm_resource_group.terratest_rg.name
+  location            = var.location
 
+  evaluation_frequency = "P1D"
+  window_duration      = "P1D"
+  scopes               = [azurerm_application_gateway.terratest_app_gateway.id]
+  severity             = 4
+  criteria {
+    query = templatefile("${path.module}/templates/query.tftpl", {
+      app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
+    })
+    time_aggregation_method = "Count"
+    threshold               = var.trigger_threshold
+    operator                = "GreaterThan"
+
+    #resource_id_column    = "client_CountryOrRegion"
+    #metric_measure_column = "CountByCountry"
+    failing_periods {
+      minimum_failing_periods_to_trigger_alert = 1
+      number_of_evaluation_periods             = 1
+    }
+  }
+
+  description           = "Application Gateway Firewall Events Alert"
+  display_name          = "Application Gateway Firewall Alert"
+  enabled               = true
+  skip_query_validation = false
   action {
-    action_group  = [azurerm_monitor_action_group.action_group.id]
-    email_subject = "Application Gateway Firewall Alert"
+    action_groups = [azurerm_monitor_action_group.action_group.id]
   }
-  data_source_id = azurerm_application_gateway.terratest_app_gateway.id
-  description    = "Alert when total results cross threshold"
-  enabled        = true
-  query = templatefile("${path.module}/templates/query.tftpl", {
-    app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
-  })
-  severity    = var.alert_severity
-  frequency   = var.alert_frequency
-  time_window = var.alert_time_window
-  trigger {
-    operator  = "GreaterThan"
-    threshold = var.trigger_threshold
-  }
+
   tags = var.tags
 }
