@@ -131,31 +131,6 @@ resource "azurerm_monitor_action_group" "action_group" {
   tags = var.tags
 }
 
-resource "azurerm_monitor_scheduled_query_rules_alert" "custom_query_alert" {
-  name                = "app-gateway-firewall-alerts-rule"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.terratest_rg.name
-
-  action {
-    action_group  = [azurerm_monitor_action_group.action_group.id]
-    email_subject = "Application Gateway Firewall Alert"
-  }
-  data_source_id = azurerm_application_gateway.terratest_app_gateway.id
-  description    = "Alert when total results cross threshold"
-  enabled        = true
-  query = templatefile("${path.module}/templates/query.tftpl", {
-    app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
-  })
-  severity    = var.alert_severity
-  frequency   = var.alert_frequency
-  time_window = var.alert_time_window
-  trigger {
-    operator  = "GreaterThan"
-    threshold = var.trigger_threshold
-  }
-  tags = var.tags
-}
-
 resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   name                = "app-gateway-firewall-alerts-rule"
   resource_group_name = azurerm_resource_group.terratest_rg.name
@@ -177,15 +152,14 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
     #metric_measure_column = "CountByCountry"
     failing_periods {
       minimum_failing_periods_to_trigger_alert = 1
-      number_of_evaluation_periods             = 5
+      number_of_evaluation_periods             = 1
     }
   }
 
-  description               = "alert_v2 description"
-  display_name              = "alert_v2 display name"
-  enabled                   = true
-  query_time_range_override = "PT1H"
-  skip_query_validation     = true
+  description           = "Application Gateway Firewall Events Alert"
+  display_name          = "Application Gateway Firewall Alert"
+  enabled               = true
+  skip_query_validation = false
   action {
     action_groups = [azurerm_monitor_action_group.action_group.id]
   }
