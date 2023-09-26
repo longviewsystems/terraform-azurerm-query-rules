@@ -155,3 +155,40 @@ resource "azurerm_monitor_scheduled_query_rules_alert" "custom_query_alert" {
   }
   tags = var.tags
 }
+
+resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
+  name                = "app-gateway-firewall-alerts-rule"
+  resource_group_name = azurerm_resource_group.terratest_rg.name
+  location            = var.location
+
+  evaluation_frequency = "P1D"
+  window_duration      = "P1D"
+  scopes               = [azurerm_application_gateway.terratest_app_gateway.id]
+  severity             = 4
+  criteria {
+    query = templatefile("${path.module}/templates/query.tftpl", {
+      app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
+    })
+    time_aggregation_method = "Count"
+    threshold               = var.trigger_threshold
+    operator                = "GreaterThan"
+
+    #resource_id_column    = "client_CountryOrRegion"
+    #metric_measure_column = "CountByCountry"
+    failing_periods {
+      minimum_failing_periods_to_trigger_alert = 1
+      number_of_evaluation_periods             = 5
+    }
+  }
+
+  description               = "alert_v2 description"
+  display_name              = "alert_v2 display name"
+  enabled                   = true
+  query_time_range_override = "PT1H"
+  skip_query_validation     = true
+  action {
+    action_groups = [azurerm_monitor_action_group.action_group.id]
+  }
+
+  tags = var.tags
+}

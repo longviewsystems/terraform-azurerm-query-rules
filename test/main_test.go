@@ -13,7 +13,7 @@ func TestTerraformFirewallAlerts(t *testing.T) {
 		VarFiles:     []string{"test.tfvars"},
 	}
 
-	defer terraform.Destroy(t, options)
+	//defer terraform.Destroy(t, options)
 
 	init, err := terraform.InitE(t, options)
 

@@ -1,3 +1,4 @@
 AzureDiagnostics 
   | where ResourceProvider == "MICROSOFT.NETWORK" and Category == "ApplicationGatewayFirewallLog" and ResourceId == "${app_gateway_id}"
   | where action_s == "Blocked"
+  | count
