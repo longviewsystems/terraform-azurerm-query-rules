@@ -8,14 +8,9 @@ variable "alert_resource_group_name" {
   description = "Resource Group name for the alert"
 }
 
-variable "email_address" {
-  type        = string
-  description = "Action Group recipient email address"
-}
-
-variable "action_group_name" {
-  type        = string
-  description = "Name of the action group"
+variable "action_groups_ids" {
+  type        = list(string)
+  description = "List of action groups IDs"
 }
 
 variable "tags" {

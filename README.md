@@ -19,17 +19,15 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_monitor_action_group.action_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_action_group) | resource |
 | [azurerm_monitor_scheduled_query_rules_alert_v2.custom_query_alert](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_scheduled_query_rules_alert_v2) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_action_group_name"></a> [action\_group\_name](#input\_action\_group\_name) | Name of the action group | `string` | n/a | yes |
+| <a name="input_action_groups_ids"></a> [action\_groups\_ids](#input\_action\_groups\_ids) | List of action groups IDs | `list(string)` | n/a | yes |
 | <a name="input_alert_resource_group_name"></a> [alert\_resource\_group\_name](#input\_alert\_resource\_group\_name) | Resource Group name for the alert | `string` | n/a | yes |
 | <a name="input_alert_severity"></a> [alert\_severity](#input\_alert\_severity) | Severity of the alert | `number` | n/a | yes |
-| <a name="input_email_address"></a> [email\_address](#input\_email\_address) | Action Group recipient email address | `string` | n/a | yes |
 | <a name="input_evaluation_frequency"></a> [evaluation\_frequency](#input\_evaluation\_frequency) | The evaluation frequency for your resource | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | location | `string` | n/a | yes |
 | <a name="input_scope_app_gateway_id"></a> [scope\_app\_gateway\_id](#input\_scope\_app\_gateway\_id) | Resource ID of the Application Gateway | `list(string)` | n/a | yes |
@@ -41,5 +39,4 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_action_group_id"></a> [action\_group\_id](#output\_action\_group\_id) | The ID of the Action Group. |
 | <a name="output_activity_log_alert_id"></a> [activity\_log\_alert\_id](#output\_activity\_log\_alert\_id) | The ID of the Activity Log Alert. |

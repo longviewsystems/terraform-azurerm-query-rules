@@ -1,20 +1,5 @@
 # Terraform module for creating an Azure Application Gateway firewall alert for unthorized access
 
-resource "azurerm_monitor_action_group" "action_group" {
-  name                = var.action_group_name
-  resource_group_name = var.alert_resource_group_name
-  short_name          = "frewlalrt"
-
-  email_receiver {
-    name                    = "health-alert-email-receiver"
-    email_address           = var.email_address
-    use_common_alert_schema = false
-  }
-
-  tags = var.tags
-}
-
-
 resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   name                = "app-gateway-firewall-alerts-rule"
   resource_group_name = var.alert_resource_group_name
@@ -42,7 +27,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   enabled               = true
   skip_query_validation = false
   action {
-    action_groups = [azurerm_monitor_action_group.action_group.id]
+    action_groups = var.action_groups_ids
   }
 
   tags = var.tags
