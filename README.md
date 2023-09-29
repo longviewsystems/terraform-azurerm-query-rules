@@ -27,6 +27,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_action_groups_ids"></a> [action\_groups\_ids](#input\_action\_groups\_ids) | List of action groups IDs | `list(string)` | n/a | yes |
 | <a name="input_alert_resource_group_name"></a> [alert\_resource\_group\_name](#input\_alert\_resource\_group\_name) | Resource Group name for the alert | `string` | n/a | yes |
+| <a name="input_alert_rule_name"></a> [alert\_rule\_name](#input\_alert\_rule\_name) | Name of the alert | `string` | n/a | yes |
 | <a name="input_alert_severity"></a> [alert\_severity](#input\_alert\_severity) | Severity of the alert | `number` | n/a | yes |
 | <a name="input_evaluation_frequency"></a> [evaluation\_frequency](#input\_evaluation\_frequency) | The evaluation frequency for your resource | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | location | `string` | n/a | yes |

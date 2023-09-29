@@ -1,3 +1,8 @@
+variable "alert_rule_name" {
+  type        = string
+  description = "Name of the alert"
+}
+
 variable "location" {
   type        = string
   description = "location"
