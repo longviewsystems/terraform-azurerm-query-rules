@@ -11,7 +11,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   severity             = var.alert_severity
   criteria {
     query = templatefile("${path.module}/templates/query.tftpl", {
-      app_gateway_id = var.scope_app_gateway_id
+      app_gateway_id = var.scope_app_gateway_id[0]
     })
     time_aggregation_method = "Count"
     threshold               = var.trigger_threshold
