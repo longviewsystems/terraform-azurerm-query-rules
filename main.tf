@@ -7,7 +7,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
 
   evaluation_frequency = var.evaluation_frequency
   window_duration      = var.window_duration
-  scopes               = [azurerm_application_gateway.terratest_app_gateway.id]
+  scopes               = var.scope_app_gateway_id
   severity             = var.alert_severity
   criteria {
     query = templatefile("${path.module}/templates/query.tftpl", {
