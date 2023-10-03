@@ -8,3 +8,7 @@ tags = {
   owner       = "Terratest"
 }
 trigger_threshold = "3"
+kusto_log_query   = <<EOT
+AzureDiagnostics 
+| where ResourceProvider == "MICROSOFT.NETWORK" and Category == "ApplicationGatewayAccessLog"
+EOT

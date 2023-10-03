@@ -7,7 +7,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformFirewallAlerts(t *testing.T) {
+func TestTerraformAlertRules(t *testing.T) {
 	options := &terraform.Options{
 		TerraformDir: "./fixtures",
 		VarFiles:     []string{"test.tfvars"},

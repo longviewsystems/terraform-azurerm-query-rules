@@ -3,6 +3,16 @@ variable "alert_rule_name" {
   description = "Name of the alert"
 }
 
+variable "alert_rule_description" {
+  type        = string
+  description = "Description of the alert"
+}
+
+variable "alert_rule_display_name" {
+  type        = string
+  description = "Display name of the alert"
+}
+
 variable "location" {
   type        = string
   description = "location"
@@ -46,5 +56,10 @@ variable "window_duration" {
 variable "trigger_threshold" {
   type        = number
   description = "Threshold of the alert"
+}
+
+variable "kusto_log_query" {
+  type        = string
+  description = "Kusto log query with Terraform escape sequences or in heredoc" //https://developer.hashicorp.com/terraform/language/expressions/strings#escape-sequences
 }
 

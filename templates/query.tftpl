@@ -1,3 +1,0 @@
-  AzureDiagnostics 
-    | where ResourceProvider == "MICROSOFT.NETWORK" and Category == "ApplicationGatewayAccessLog" and ResourceId == "${app_gateway_id}"
-    | where httpStatus_d >= 403

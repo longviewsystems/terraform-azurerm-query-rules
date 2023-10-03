@@ -10,9 +10,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   scopes               = var.scope_app_gateway_id
   severity             = var.alert_severity
   criteria {
-    query = templatefile("${path.module}/templates/query.tftpl", {
-      app_gateway_id = var.scope_app_gateway_id[0]
-    })
+    query                   = var.kusto_log_query
     time_aggregation_method = "Count"
     threshold               = var.trigger_threshold
     operator                = "GreaterThan"
@@ -22,8 +20,8 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
     }
   }
 
-  description           = "Application Gateway Firewall Events Alert"
-  display_name          = "Application Gateway Firewall Alert"
+  description           = var.alert_rule_description
+  display_name          = var.alert_rule_display_name
   enabled               = true
   skip_query_validation = false
   action {
