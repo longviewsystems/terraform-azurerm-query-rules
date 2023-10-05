@@ -9,7 +9,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.73.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.0.0, < 4.0.0 |
 
 ## Modules
 
@@ -34,7 +34,7 @@ No modules.
 | <a name="input_evaluation_frequency"></a> [evaluation\_frequency](#input\_evaluation\_frequency) | The evaluation frequency for your resource | `string` | n/a | yes |
 | <a name="input_kusto_log_query"></a> [kusto\_log\_query](#input\_kusto\_log\_query) | Kusto log query with Terraform escape sequences or in heredoc | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | location | `string` | n/a | yes |
-| <a name="input_scope_app_gateway_id"></a> [scope\_app\_gateway\_id](#input\_scope\_app\_gateway\_id) | Resource ID of the Application Gateway | `list(string)` | n/a | yes |
+| <a name="input_scope_ids"></a> [scope\_ids](#input\_scope\_ids) | Resource IDs of the alert scope | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags | `map(string)` | n/a | yes |
 | <a name="input_trigger_threshold"></a> [trigger\_threshold](#input\_trigger\_threshold) | Threshold of the alert | `number` | n/a | yes |
 | <a name="input_window_duration"></a> [window\_duration](#input\_window\_duration) | The window duration for your resource | `string` | n/a | yes |
