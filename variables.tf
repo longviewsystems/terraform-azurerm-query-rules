@@ -33,9 +33,9 @@ variable "tags" {
   description = "Tags"
 }
 
-variable "scope_app_gateway_id" {
+variable "scope_ids" {
   type        = list(string)
-  description = "Resource ID of the Application Gateway" // only one resource ID is supported for now
+  description = "Resource IDs of the alert scope" // only one resource ID is supported for now
 }
 
 variable "alert_severity" {

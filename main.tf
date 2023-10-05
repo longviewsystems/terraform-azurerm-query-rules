@@ -7,7 +7,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
 
   evaluation_frequency = var.evaluation_frequency
   window_duration      = var.window_duration
-  scopes               = var.scope_app_gateway_id
+  scopes               = var.scope_ids
   severity             = var.alert_severity
   criteria {
     query                   = var.kusto_log_query
