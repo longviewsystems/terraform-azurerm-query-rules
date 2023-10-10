@@ -11,6 +11,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   severity             = var.alert_severity
   criteria {
     query                   = var.kusto_log_query
+    metric_measure_column  = var.metric_measure_column
     time_aggregation_method = var.time_aggregation_method
     threshold               = var.trigger_threshold
     operator                = var.alert_logic_operator
