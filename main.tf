@@ -11,12 +11,12 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   severity             = var.alert_severity
   criteria {
     query                   = var.kusto_log_query
-    time_aggregation_method = "Count"
+    time_aggregation_method = var.time_aggregation_method
     threshold               = var.trigger_threshold
-    operator                = "GreaterThan"
+    operator                = var.alert_logic_operator
     failing_periods {
-      minimum_failing_periods_to_trigger_alert = 1
-      number_of_evaluation_periods             = 1
+      minimum_failing_periods_to_trigger_alert = var.minimum_failing_periods_to_trigger_alert
+      number_of_evaluation_periods             = var.number_of_evaluation_periods
     }
   }
 
