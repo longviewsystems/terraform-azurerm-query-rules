@@ -141,15 +141,11 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "custom_query_alert" {
   scopes               = [azurerm_application_gateway.terratest_app_gateway.id]
   severity             = 4
   criteria {
-    query = templatefile("${path.module}/templates/query.tftpl", {
-      app_gateway_id = azurerm_application_gateway.terratest_app_gateway.id
-    })
+    query                   = var.kusto_log_query
     time_aggregation_method = "Count"
     threshold               = var.trigger_threshold
     operator                = "GreaterThan"
 
-    #resource_id_column    = "client_CountryOrRegion"
-    #metric_measure_column = "CountByCountry"
     failing_periods {
       minimum_failing_periods_to_trigger_alert = 1
       number_of_evaluation_periods             = 1

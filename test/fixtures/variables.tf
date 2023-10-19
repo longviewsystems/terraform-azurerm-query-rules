@@ -22,3 +22,8 @@ variable "trigger_threshold" {
   type        = number
   description = "Threshold of the alert"
 }
+
+variable "kusto_log_query" {
+  type        = string
+  description = "Kusto log query"
+}
